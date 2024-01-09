@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <link rel="icon" href="logo_fav.ico" type="image/x-icon">
+    <style>
+        html {
+            height: 100%;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px); /* Starting slightly higher */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #f7f7f7;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 1s ease-in-out;
+
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1; /* New line added */
+        }
+
+        .category {
+            background: #fff;
+            margin-bottom: 30px; /* Increased spacing between categories */
+            padding: 30px; /* More padding for a spacious look */
+            border-radius: 8px; /* Slightly rounded corners */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Softer shadow */
+            transition: box-shadow 0.3s ease-in-out; /* Transition for shadow */
+        }
+        .category:hover {
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1); /* Shadow effect on hover */
+        }
+        .category h2 {
+            font-size: 28px; /* Larger font size for headers */
+            color: #011936; /* Brighter color for headers */
+            margin-bottom: 20px; /* More space below headers */
+        }
+        .category ul {
+            list-style: none;
+            padding: 0;
+            margin: 0; /* Remove default margin */
+        }
+        .category ul li {
+            padding: 15px 20px; /* More padding for list items */
+            border-bottom: 1px solid #eaeaea; /* Lighter border color */
+            cursor: pointer;
+            transition: all 0.3s ease-in-out; /* Transition for background and transform */
+            border-radius: 8px; /* Slightly rounded corners for list items */
+            margin-bottom: 10px; /* Space between list items */
+            transform: translateX(0); /* Set a starting point for hover animation */
+        }
+        .category ul li:last-child {
+            border-bottom: none;
+        }
+        .category ul li:hover {
+            background-color: #f0f0f0; /* Subtle color change on hover */
+            transform: translateX(5px); /* Move to the right on hover */
+        }
+
+        .category ul li a {
+            color: #333; /* Black text color */
+            text-decoration: none; /* Removes underline */
+            transition: color 0.3s ease-in-out; /* Smooth transition for color change */
+        }
+
+        .category ul li a:hover {
+            color: #023778; /* Color change on hover, optional */
+        }
+
+
+        @media (max-width: 600px) {
+            .title {
+                font-size: 24px; /* Adjusted font size for smaller screens */
+            }
+            .subtitle {
+                font-size: 16px; /* Adjusted font size for smaller screens */
+            }
+            .category h2 {
+                font-size: 20px; /* Slightly smaller font size for headers on mobile */
+            }
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+            .category h2 {
+                font-size: 24px; /* Slightly smaller font size on mobile */
+            }
+            .category ul li {
+                padding: 15px 10px; /* Adjust padding for mobile */
+            }
+            .header-image {
+                max-width: 10%;
+            }
+        }
+        .title-container {
+            text-align: center;
+            margin-top: 48px; /* More vertical space for title */
+            margin-bottom: 32px;
+            opacity: 0; /* Start with the title hidden */
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            transform: translateY(-20px); /* Start slightly above its normal position */
+        }
+        .title-visible {
+            opacity: 1; /* Fade to visible */
+            transform: translateY(0); /* Move to its normal position */
+        }
+        .title {
+            font-size: 40px; /* Larger font size for title */
+            margin-top: 0px;
+            margin-bottom: 0px;
+            color: #333;
+        }
+        .subtitle {
+            font-size: 20px; /* Larger font size for subtitle */
+            color: #666;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 0px;
+            margin-bottom: 20px; /* More space below subtitle */
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .contact-link {
+            color: #140f00;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 20px; /* Padding inside the box */
+            border: 1px solid #011936; /* Border for the box */
+            border-radius: 6px; /* Rounded corners for the box */
+            border-color: #140f00;
+            background-color: #f7b600;
+            margin-left: 8px;
+            display: inline-block; /* To enable padding and border */
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+        }
+
+        .contact-link:hover {
+            background-color: #ffce47; /* Subtle background color on hover */
+            color: #140f00; /* Change text color on hover */
+            border-color: #ffce47;
+            text-decoration: none; /* No underline on hover */
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1); /* Shadow effect on hover */
+
+
+        }
+
+        .general-link {
+            color: #011936;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: regular;
+            padding: 10px 20px; /* Padding inside the box */
+            border: 1px solid #011936; /* Border for the box */
+            border-radius: 6px; /* Rounded corners for the box */
+            margin-right: 8px;
+            display: inline-block; /* To enable padding and border */
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; box-shadow 0.3s ease-in-out;
+        }
+
+        .general-link:hover {
+            background-color: #011936; /* Subtle background color on hover */
+            color: #f7f7f7; /* Change text color on hover */
+            text-decoration: none; /* No underline on hover */
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1); /* Shadow effect on hover */
+
+        }
+        .header-image {
+            max-width: 6%;  /* Image will scale down on smaller screens */
+            height: auto;
+            margin-bottom: 0px;
+        }
+
+
+        /* Form Input and Textarea Styles */
+        input[type="text"], input[type="email"], input[type="date"], textarea {
+            width: 100%; /* Full width */
+            padding: 10px 15px; /* Comfortable padding */
+            margin: 8px 0; /* Space between fields */
+            display: inline-block; /* Align properly */
+            border: 1px solid #ccc; /* Subtle border */
+            border-radius: 4px; /* Rounded corners */
+            box-sizing: border-box; /* Box-sizing */
+        }
+
+        textarea {
+            height: 100px; /* Fixed height for textarea */
+            resize: vertical; /* Allow vertical resizing */
+        }
+
+        .category input[type="submit"], .category button {
+            width: auto; /* Auto width for buttons */
+            padding: 10px 18px; /* Padding for buttons */
+            margin: 8px 0; /* Margin for buttons */
+            border: none; /* No border for buttons */
+            border-radius: 4px; /* Rounded corners for buttons */
+            cursor: pointer; /* Pointer cursor for buttons */
+        }
+
+        .category input[type="submit"]:hover, .category button:hover {
+            background-color: #45a049; /* Hover effect for buttons */
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <form action="submit_form.php" method="POST">
+            <!-- ... [form categories and fields] -->
+            <!-- Personal Details Section -->
+            <div class="category">
+                <h2>Persoonlijke Gegevens</h2>
+                <input type="text" name="name" placeholder="Mijn naam">
+                <input type="email" name="email" placeholder="Mijn email">
+                <input type="text" name="phone" placeholder="Mijn telefoonnummer">
+            </div>
+
+            <!-- Dog Details Section -->
+            <div class="category">
+                <h2>Gegevens van Mijn Hond</h2>
+                <input type="text" name="dog_name" placeholder="Naam van mijn hond">
+                <input type="text" name="dog_breed" placeholder="Ras van mijn hond">
+                <input type="date" name="dog_birthdate" placeholder="Geboortedatum van mijn hond">
+                <input type="text" name="dog_origin" placeholder="Origine van mijn hond">
+            </div>
+
+            <!-- Problem Details Section -->
+            <div class="category">
+                <h2>Probleemdetails</h2>
+                <textarea name="problems" placeholder="Mijn voornaamste problemen"></textarea>
+            </div>
+
+            <!-- Location Details Section -->
+            <div class="category">
+                <h2>Locatiegegevens</h2>
+                <input type="text" name="location" placeholder="Mijn woonplaats">
+                <input type="text" name="address" placeholder="Mijn adres">
+            </div>
+
+            <!-- Submit Button -->
+            <div class="category">
+                <button type="submit" class="contact-link">Verzenden</button>
+            </div>
+        </form>
+    </div>
+
+
+    <footer class="footer">
+        <a href="over.html" class="general-link">over</a>
+        <a href="https://www.hondenmeesters.com/" class="contact-link">advies</a>
+    </footer>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // Fade in the title when the page loads
+        document.querySelector('.title-container').classList.add('title-visible');
+    });
+
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+        let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        if (currentScroll > lastScrollTop) {
+            // Scroll down
+            document.querySelector('.title-container').classList.remove('title-visible');
+        } else {
+            // Scroll up
+            document.querySelector('.title-container').classList.add('title-visible');
+        }
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
+    }, false);
+</script>
+
+</body>
+</html>
